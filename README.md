@@ -19,4 +19,4 @@ Let **Lady Liberty** decide your loadout with **StrataGEN**!
 Engage those orbital thrusters and spread Managed Democracy!
 
 
- ![StrataGen](https://github.com/user-attachments/assets/95f4dc47-1d39-4957-b4c6-6770e8026e9a)
+![Screenshot 2025-06-04 180715](https://github.com/user-attachments/assets/c9038051-3477-4dcf-8202-646eed89bb68)
