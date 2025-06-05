@@ -1,4 +1,4 @@
-# StrataGEN - A Random Stratagem Generator for Helldivers
+# StrataGEN - A Random Stratagem Loadout Generator for Helldivers
 
 **Hello fellow Helldivers!**
 
