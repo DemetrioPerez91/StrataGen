@@ -15,7 +15,7 @@ Let **Lady Liberty** decide your loadout with **StrataGEN**!
 
 ---
 
-👉 **[Download the installer](#)**  
+👉 **[Download the installer](https://github.com/DemetrioPerez91/StrataGen/releases/download/v1.0.0/StrataGen.Setup.1.0.0.exe)**  
 Engage those orbital thrusters and serve Serve Democracy!
 
 
