@@ -16,10 +16,14 @@
     "electron-packager": "^17.1.2"
   },
   "build": {
-    "appId": "com.yourdomain.yourapp",
-    "productName": "Stratagem Shuffler",
+    "appId": "com.stratagen.demetrio",
+    "productName": "StrataGen",
     "win": {
       "target": "nsis"
+    },
+    "files": ["**/*"],
+    "directories": {
+      "buildResources": "assets"
     },
     "icon": "assets/icon/helldivers"
   }

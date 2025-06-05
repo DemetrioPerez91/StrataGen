@@ -1,4 +1,3 @@
-console.log('Hello from Electron 👋')
 const { app, BrowserWindow } = require('electron')
 const path = require('path');
 
