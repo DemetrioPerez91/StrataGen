@@ -31,6 +31,8 @@
       border-radius: 8px;
       overflow: hidden;
       aspect-ratio: 1 / 1;
+      cursor: pointer;
+      transition: outline 0.2s ease;
     }
 
     .grid img {
@@ -49,6 +51,9 @@
       border-radius: 0;
     }
 
+    .grid-element.locked {
+      outline: 4px solid red;
+    }
 
     button {
       margin-top: 20px;
@@ -83,15 +88,16 @@
 <body>
 
   <div class="grid">
-    <div class="grid-element"><img src="" alt="" /></div>
-    <div class="grid-element"><img src="" alt="" /></div>
-    <div class="grid-element"><img src="" alt="" /></div>
-    <div class="grid-element"><img src="" alt="" /></div>
+    <div class="grid-element" data-locked="false"><img src="" alt="" /></div>
+    <div class="grid-element" data-locked="false"><img src="" alt="" /></div>
+    <div class="grid-element" data-locked="false"><img src="" alt="" /></div>
+    <div class="grid-element" data-locked="false"><img src="" alt="" /></div>
   </div>
 
   <button onclick="shuffleImages()">Shuffle Stratagems</button>
 
   <script>
+    const gridElements = document.querySelectorAll('.grid-element');
     const imageElements = document.querySelectorAll('.grid img');
     const allImages = [
       'AM-23_EMS_Mortar_Sentry_Stratagem_Icon.png',
@@ -163,23 +169,50 @@
       'Tesla_Tower_Stratagem_Icon.png'
     ];
 
+    // Toggle lock state on click
+    gridElements.forEach((el, idx) => {
+      el.addEventListener('click', () => {
+        const img = el.querySelector('img');
+        if (img.src && img.src !== window.location.href) {
+          const locked = el.getAttribute('data-locked') === 'true';
+          el.setAttribute('data-locked', (!locked).toString());
+          el.classList.toggle('locked');
+        }
+      });
+    });
+
     function getRandomImages(arr, count) {
       const shuffled = [...arr].sort(() => 0.5 - Math.random());
       return shuffled.slice(0, count);
     }
 
-    window.onload = () => {
-      shuffleImages();
-    };
-
     function shuffleImages() {
-      const selected = getRandomImages(allImages, 4);
-      selected.forEach((filename, idx) => {
-        imageElements[idx].src = `stratagems/${filename}`;
+      const lockedImages = new Set();
+      gridElements.forEach((el, idx) => {
+        if (el.getAttribute('data-locked') === 'true') {
+          const imgSrc = imageElements[idx].src.split('/').pop();
+          if (imgSrc) lockedImages.add(imgSrc);
+        }
+      });
+
+      const unlockedIndices = [];
+      gridElements.forEach((el, idx) => {
+        if (el.getAttribute('data-locked') !== 'true') {
+          unlockedIndices.push(idx);
+        }
+      });
+
+      const availableImages = allImages.filter(img => !lockedImages.has(img));
+      const selected = getRandomImages(availableImages, unlockedIndices.length);
+
+      unlockedIndices.forEach((idx, i) => {
+        imageElements[idx].src = `stratagems/${selected[i]}`;
       });
     }
 
+    window.onload = () => {
+      shuffleImages();
+    };
   </script>
-
 </body>
 </html>
