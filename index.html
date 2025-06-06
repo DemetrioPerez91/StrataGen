@@ -48,6 +48,9 @@
       border-color: #FFE900;
       border-radius: 0;
     }
+    .grid-element.shuffleLocked {
+      outline: 4px solid red;
+    }
 
     .locked {
       pointer-events: none;
@@ -121,6 +124,7 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 1vw;
       width: 50vw;
+      left: 50%;
     }
 
     .stratagem-picker-element {
@@ -260,7 +264,10 @@
         const img = div.querySelector('img');
         if (img.src && !lockedGridIndices.has(index)) {
           lockedGridIndices.add(index);
-          div.classList.add('locked');
+          div.classList.add('shuffleLocked');
+        } else if (img.src && lockedGridIndices.has(index)) {
+          div.classList.remove('shuffleLocked' )
+          lockedGridIndices.delete(index)
         }
       });
     });
