@@ -1,0 +1,153 @@
+html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #808080;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5vw;
+      width: 90vw;
+      max-width: 300px;
+      margin-top: 20px;
+    }
+
+    .grid div {
+      background-color: gray;
+      border-radius: 8px;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      cursor: pointer;
+    }
+
+    .grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      user-select: none;
+      pointer-events: none;
+      display: block;
+    }
+
+    .grid-element {
+      border-width: 2px;
+      border-style: solid;
+      border-color: #FFE900;
+      border-radius: 0;
+    }
+    .grid-element.shuffleLocked {
+      outline: 4px solid red;
+    }
+
+    .locked {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    button {
+      margin: 20px 10px 0;
+      padding: 0.7em 1.5em;
+      font-size: 1.1rem;
+      background-color: #FFE900;
+      color: #000000;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    button:hover {
+      background-color: #ba6d00;
+    }
+
+    #dismiss-button {
+      position: absolute;
+      top: -15px; /* slightly above the picker */
+      left: 50%; /* center horizontally */
+      transform: translateX(-50%);
+      padding: 0.5em 1em;
+      background-color: #FFE900;
+      color: black;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    /*#stratagem-picker {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      height: 60%;
+      background: #666;
+      transition: bottom 0.3s ease-out;
+      overflow-y: auto;
+      z-index: 10;
+      padding: 20px;
+    }*/
+
+    #stratagem-picker {
+      position: fixed;
+      bottom: -100%;
+      width: 100%;
+      max-height: 90vh;
+      background: #606060;
+      padding: 20px;
+      box-sizing: border-box;
+      transition: bottom 0.3s ease;
+      overflow-y: auto;
+      z-index: 1000;
+    }
+
+    #stratagem-picker.visible {
+      bottom: 0;
+    }
+
+    .stratagem-picker-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1vw;
+      width: 50vw;
+    }
+
+    .stratagem-picker-element {
+      background-color: gray;
+      border: 2px solid #FFE900;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .stratagem-picker-element[isLocked="true"] {
+      opacity: 0.5;
+    }
+
+    .stratagem-picker-element img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        
+        width: 50vw;
+        gap: 1vw;
+      }
+      button {
+        font-size: 1rem;
+        padding: 0.6em 1.2em;
+      }
+    }

@@ -3,8 +3,13 @@ const path = require('path');
 
 const createWindow = () => {
   const win = new BrowserWindow({
-    width: 425,
-    height: 208,
+    width: 643,
+    height: 262,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: false, 
+      nodeIntegration: true
+    },
     icon: path.join(__dirname, 'assets/icons/helldivers.ico') 
   })
 
@@ -12,5 +17,7 @@ const createWindow = () => {
 }
 
 app.whenReady().then(() => {
+  console.log('[Preload] Preload script loaded.');
+  preload: path.join(__dirname, 'preload.js')
   createWindow()
 })
