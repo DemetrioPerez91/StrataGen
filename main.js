@@ -3,8 +3,8 @@ const path = require('path');
 
 const createWindow = () => {
   const win = new BrowserWindow({
-    width: 614,
-    height: 287,
+    width: 425,
+    height: 208,
     icon: path.join(__dirname, 'assets/icons/helldivers.ico') 
   })
 

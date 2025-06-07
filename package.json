@@ -21,7 +21,9 @@
     "win": {
       "target": "nsis"
     },
-    "files": ["**/*"],
+    "files": [
+      "**/*"
+    ],
     "directories": {
       "buildResources": "assets"
     },
