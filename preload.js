@@ -1,5 +1,6 @@
-const stratagems = require('./stratagemImages');
+const {stratagems, stratagemsByCategory} = require('./stratagemImages');
 
 window.api = {
-  getAllImages: () => stratagems
+  getAllImages: () => stratagems,
+  getStratagemsByCategory: () => stratagemsByCategory
 };

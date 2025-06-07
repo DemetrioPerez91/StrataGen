@@ -1,4 +1,7 @@
 const stratagems = window.api.getAllImages();
+const stratagemsByCategory = window.api.getStratagemsByCategory();
+
+
 const imageElements = document.querySelectorAll('.grid-element img');
 const gridDivs = document.querySelectorAll('.grid-element');
 const pickerGrid = document.getElementById('pickerGrid');
@@ -28,8 +31,6 @@ function getRandomImages(arr, count, exclude = []) {
 }
 
 function shuffleImages() {
-  console.log("**lol***")
-  console.log(window.api.getAllImages())
   const usedImages = Array.from(imageElements).map(img => img.src.split('/').pop());
   const excludeImages = [...lockedStratagems, ...usedImages.filter((_, idx) => lockedGridIndices.has(idx))];
   const newImages = getRandomImages(stratagems, 4 - lockedGridIndices.size, excludeImages);
@@ -45,7 +46,14 @@ function shuffleImages() {
 function showStratagemBoard() {
   pickerGrid.innerHTML = '';
   lockedStratagems.clear();
-  stratagems.forEach(filename => {
+
+  const airstrikes = stratagemsByCategory.airStrikes;
+  const support = stratagemsByCategory.support;
+  const sentriesAndFortifications = stratagemsByCategory.sentriesAndFortifications;
+
+  const array = [...airstrikes, ...support, ...sentriesAndFortifications];
+
+  array.forEach(filename => {
     const div = document.createElement('div');
     div.className = 'stratagem-picker-element';
     div.setAttribute('isLocked', 'false');
@@ -77,4 +85,3 @@ function dismissStratagemBoard() {
 
 
 window.onload = shuffleImages;
-
